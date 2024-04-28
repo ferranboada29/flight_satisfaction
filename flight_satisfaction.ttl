@@ -1,0 +1,835 @@
+@prefix : <http://www.semanticweb.org/ferranboadabergada/ontologies/2024/3/flight_satisfaction/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix swrl: <http://www.w3.org/2003/11/swrl#> .
+@prefix swrlb: <http://www.w3.org/2003/11/swrlb#> .
+@prefix flight_satisfaction: <http://www.semanticweb.org/ferranboadabergada/ontologies/2024/3/flight_satisfaction#> .
+@base <http://www.semanticweb.org/ferranboadabergada/ontologies/2024/3/flight_satisfaction/> .
+
+<http://www.semanticweb.org/ferranboadabergada/ontologies/2024/3/flight_satisfaction> rdf:type owl:Ontology .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://www.w3.org/2000/01/rdf-schema#sameAs
+rdfs:sameAs rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.semanticweb.org/ferranboadabergada/ontologies/2024/3/flight_satisfaction#about_flight
+flight_satisfaction:about_flight rdf:type owl:ObjectProperty ,
+                                          owl:AsymmetricProperty ;
+                                 rdfs:domain flight_satisfaction:review ;
+                                 rdfs:range flight_satisfaction:flight ;
+                                 rdfs:comment "Every review is attached to a single flight."@en ;
+                                 rdfs:label "about_flight"@en .
+
+
+###  http://www.semanticweb.org/ferranboadabergada/ontologies/2024/3/flight_satisfaction#arrives_to
+flight_satisfaction:arrives_to rdf:type owl:ObjectProperty ,
+                                        owl:AsymmetricProperty ;
+                               rdfs:domain flight_satisfaction:flight ;
+                               rdfs:range flight_satisfaction:airport ;
+                               rdfs:comment "the destination airport of a certain flight."@en ;
+                               rdfs:label "arrives_to"@en .
+
+
+###  http://www.semanticweb.org/ferranboadabergada/ontologies/2024/3/flight_satisfaction#by_airline
+flight_satisfaction:by_airline rdf:type owl:ObjectProperty ,
+                                        owl:AsymmetricProperty ;
+                               rdfs:domain flight_satisfaction:flight ;
+                               rdfs:range flight_satisfaction:airline ;
+                               rdfs:comment "A flight is offered by a single airline."@en ;
+                               rdfs:label "by_airline"@en .
+
+
+###  http://www.semanticweb.org/ferranboadabergada/ontologies/2024/3/flight_satisfaction#departs_from
+flight_satisfaction:departs_from rdf:type owl:ObjectProperty ,
+                                          owl:AsymmetricProperty ;
+                                 rdfs:domain flight_satisfaction:flight ;
+                                 rdfs:range flight_satisfaction:airport ;
+                                 rdfs:comment "The flight departs from a certain airport."@en ;
+                                 rdfs:label "departs_from"@en .
+
+
+###  http://www.semanticweb.org/ferranboadabergada/ontologies/2024/3/flight_satisfaction#has_aircraft
+flight_satisfaction:has_aircraft rdf:type owl:ObjectProperty ,
+                                          owl:AsymmetricProperty ;
+                                 rdfs:domain flight_satisfaction:flight ;
+                                 rdfs:range flight_satisfaction:aircraft ;
+                                 rdfs:comment "A flight needs an aircraft."@en ;
+                                 rdfs:label "has_aircraft"@en .
+
+
+###  http://www.semanticweb.org/ferranboadabergada/ontologies/2024/3/flight_satisfaction#has_information
+flight_satisfaction:has_information rdf:type owl:ObjectProperty ,
+                                             owl:AsymmetricProperty ;
+                                    rdfs:domain flight_satisfaction:review ;
+                                    rdfs:range flight_satisfaction:non_overall_review ;
+                                    rdfs:comment "A review may include one or several non overall review information."@en ;
+                                    rdfs:label "includes_attribute"@en .
+
+
+###  http://www.semanticweb.org/ferranboadabergada/ontologies/2024/3/flight_satisfaction#includes_recommendation
+flight_satisfaction:includes_recommendation rdf:type owl:ObjectProperty ,
+                                                     owl:AsymmetricProperty ;
+                                            rdfs:domain flight_satisfaction:review ;
+                                            rdfs:range flight_satisfaction:review_recommendation ;
+                                            rdfs:comment "A review may include one explicit recommendation information"@en ;
+                                            rdfs:label "includes_recommendation"@en .
+
+
+###  http://www.semanticweb.org/ferranboadabergada/ontologies/2024/3/flight_satisfaction#includes_score
+flight_satisfaction:includes_score rdf:type owl:ObjectProperty ,
+                                            owl:AsymmetricProperty ;
+                                   rdfs:domain flight_satisfaction:review ;
+                                   rdfs:range flight_satisfaction:overall_review ;
+                                   rdfs:comment "A review may include (only) an overall score"@en ;
+                                   rdfs:label "includes_score"@en .
+
+
+###  http://www.semanticweb.org/ferranboadabergada/ontologies/2024/3/flight_satisfaction#includes_verification
+flight_satisfaction:includes_verification rdf:type owl:ObjectProperty ,
+                                                   owl:AsymmetricProperty ;
+                                          rdfs:domain flight_satisfaction:review ;
+                                          rdfs:range flight_satisfaction:review_verification ;
+                                          rdfs:comment "A review may include a verification information."@en ;
+                                          rdfs:label "includes_verification"@en .
+
+
+###  http://www.semanticweb.org/ferranboadabergada/ontologies/2024/3/flight_satisfaction#recommends_airline
+flight_satisfaction:recommends_airline rdf:type owl:ObjectProperty ,
+                                                owl:AsymmetricProperty ;
+                                       rdfs:domain flight_satisfaction:customer ;
+                                       rdfs:range flight_satisfaction:airline ;
+                                       rdfs:comment "a customer may recommend or not an airline"@en ;
+                                       rdfs:label "recommends_airline"@en .
+
+
+###  http://www.semanticweb.org/ferranboadabergada/ontologies/2024/3/flight_satisfaction#seat_review
+flight_satisfaction:seat_review rdf:type owl:ObjectProperty ,
+                                         owl:AsymmetricProperty ;
+                                rdfs:domain flight_satisfaction:review ;
+                                rdfs:range flight_satisfaction:seat ;
+                                rdfs:comment "The customer who writes the review has a seat class"@en ;
+                                rdfs:label "seat_review"@en .
+
+
+###  http://www.semanticweb.org/ferranboadabergada/ontologies/2024/3/flight_satisfaction#writes_review
+flight_satisfaction:writes_review rdf:type owl:ObjectProperty ,
+                                           owl:AsymmetricProperty ;
+                                  rdfs:domain flight_satisfaction:customer ;
+                                  rdfs:range flight_satisfaction:review ;
+                                  rdfs:comment "A customer or group of customers write a review"@en ;
+                                  rdfs:label "writes_review"@en .
+
+
+###  http://www.semanticweb.org/ferranboadabergada/ontologies/2024/3/flight_satisfaction#written_by
+flight_satisfaction:written_by rdf:type owl:ObjectProperty ,
+                                        owl:AsymmetricProperty ;
+                               rdfs:domain flight_satisfaction:review ;
+                               rdfs:range flight_satisfaction:customer ;
+                               rdfs:comment "Customer that writes a review"@en ;
+                               rdfs:label "written_by"@en .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.semanticweb.org/ferranboadabergada/ontologies/2024/3/flight_satisfaction#comes_from
+flight_satisfaction:comes_from rdf:type owl:DatatypeProperty ;
+                               rdfs:domain flight_satisfaction:customer ;
+                               rdfs:range xsd:string ;
+                               rdfs:comment "country of the customer"@en ;
+                               rdfs:label "comes_from"@en .
+
+
+###  http://www.semanticweb.org/ferranboadabergada/ontologies/2024/3/flight_satisfaction#has_date
+flight_satisfaction:has_date rdf:type owl:DatatypeProperty ;
+                             rdfs:domain flight_satisfaction:review ;
+                             rdfs:range xsd:string ;
+                             rdfs:comment "date in which a review is published"@en ;
+                             rdfs:label "has_date"@en .
+
+
+###  http://www.semanticweb.org/ferranboadabergada/ontologies/2024/3/flight_satisfaction#has_name
+flight_satisfaction:has_name rdf:type owl:DatatypeProperty ;
+                             rdfs:domain flight_satisfaction:customer ;
+                             rdfs:range xsd:string ;
+                             rdfs:comment "the name of a customer. If no name is written then is \"Anon.\""@en ;
+                             rdfs:label "has_name"@en .
+
+
+###  http://www.semanticweb.org/ferranboadabergada/ontologies/2024/3/flight_satisfaction#has_rate
+flight_satisfaction:has_rate rdf:type owl:DatatypeProperty ;
+                             rdfs:domain flight_satisfaction:review_attributes ;
+                             rdfs:range xsd:float ;
+                             rdfs:comment "The numerical score given to a review attribute instance in float format (0,1)"@en ;
+                             rdfs:label "has_rate"@en .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.semanticweb.org/ferranboadabergada/ontologies/2024/3/flight_satisfaction#A320
+flight_satisfaction:A320 rdf:type owl:Class ;
+                         rdfs:subClassOf flight_satisfaction:Airbus ;
+                         rdfs:comment "Old model of Airbus aircraft."@en ;
+                         rdfs:label "A320"@en .
+
+
+###  http://www.semanticweb.org/ferranboadabergada/ontologies/2024/3/flight_satisfaction#A330
+flight_satisfaction:A330 rdf:type owl:Class ;
+                         rdfs:subClassOf flight_satisfaction:Airbus ;
+                         rdfs:comment "Old model of Airbus aircrafts."@en ;
+                         rdfs:label "A330"@en .
+
+
+###  http://www.semanticweb.org/ferranboadabergada/ontologies/2024/3/flight_satisfaction#A350
+flight_satisfaction:A350 rdf:type owl:Class ;
+                         rdfs:subClassOf flight_satisfaction:Airbus ;
+                         rdfs:comment "Recent model of Airbus aircraft."@en ;
+                         rdfs:label "A350"@en .
+
+
+###  http://www.semanticweb.org/ferranboadabergada/ontologies/2024/3/flight_satisfaction#A380
+flight_satisfaction:A380 rdf:type owl:Class ;
+                         rdfs:subClassOf flight_satisfaction:Airbus ;
+                         rdfs:comment "Recent model of Airbus aircraft."@en ;
+                         rdfs:label "A380"@en .
+
+
+###  http://www.semanticweb.org/ferranboadabergada/ontologies/2024/3/flight_satisfaction#Airbus
+flight_satisfaction:Airbus rdf:type owl:Class ;
+                           rdfs:subClassOf flight_satisfaction:aircraft ;
+                           rdfs:comment "French producer of aircraft models."@en ;
+                           rdfs:label "Airbus"@en .
+
+
+###  http://www.semanticweb.org/ferranboadabergada/ontologies/2024/3/flight_satisfaction#B737
+flight_satisfaction:B737 rdf:type owl:Class ;
+                         rdfs:subClassOf flight_satisfaction:Boeing ;
+                         rdfs:comment "Old model of Boeing aircraftt."@en ;
+                         rdfs:label "Boeing737"@en .
+
+
+###  http://www.semanticweb.org/ferranboadabergada/ontologies/2024/3/flight_satisfaction#B757
+flight_satisfaction:B757 rdf:type owl:Class ;
+                         rdfs:subClassOf flight_satisfaction:Boeing ;
+                         rdfs:comment "Old model of Boeing aircraft."@en ;
+                         rdfs:label "Boeing757"@en .
+
+
+###  http://www.semanticweb.org/ferranboadabergada/ontologies/2024/3/flight_satisfaction#B767
+flight_satisfaction:B767 rdf:type owl:Class ;
+                         rdfs:subClassOf flight_satisfaction:Boeing ;
+                         rdfs:comment "Old model of Boeing aircraft."@en ;
+                         rdfs:label "Boeing767"@en .
+
+
+###  http://www.semanticweb.org/ferranboadabergada/ontologies/2024/3/flight_satisfaction#B777
+flight_satisfaction:B777 rdf:type owl:Class ;
+                         rdfs:subClassOf flight_satisfaction:Boeing ;
+                         rdfs:comment "Recent model of Boeing aircraft."@en ;
+                         rdfs:label "Boeing777"@en .
+
+
+###  http://www.semanticweb.org/ferranboadabergada/ontologies/2024/3/flight_satisfaction#B787
+flight_satisfaction:B787 rdf:type owl:Class ;
+                         rdfs:subClassOf flight_satisfaction:Boeing ;
+                         rdfs:comment "Recent model of Boeing aircraft"@en ;
+                         rdfs:label "Boeing787"@en .
+
+
+###  http://www.semanticweb.org/ferranboadabergada/ontologies/2024/3/flight_satisfaction#Boeing
+flight_satisfaction:Boeing rdf:type owl:Class ;
+                           rdfs:subClassOf flight_satisfaction:aircraft ;
+                           rdfs:comment "American producer of aircraft models."@en ;
+                           rdfs:label "Boeing"@en .
+
+
+###  http://www.semanticweb.org/ferranboadabergada/ontologies/2024/3/flight_satisfaction#aircraft
+flight_satisfaction:aircraft rdf:type owl:Class ;
+                             rdfs:comment "Air vehicle of a flight. Can only be produced by two oligopolistic companies, Airbus or Boeing."@en ;
+                             rdfs:label "Aircraft"@en ;
+                             rdfs:sameAs "https://dbpedia.org/page/Aircraft"@en .
+
+
+###  http://www.semanticweb.org/ferranboadabergada/ontologies/2024/3/flight_satisfaction#airline
+flight_satisfaction:airline rdf:type owl:Class ;
+                            rdfs:comment "Company that delivers air transportation services. Collects reviews for each customer in each flight."@en ;
+                            rdfs:label "airline"@en ;
+                            rdfs:sameAs "https://dbpedia.org/page/Airline"@en .
+
+
+###  http://www.semanticweb.org/ferranboadabergada/ontologies/2024/3/flight_satisfaction#airport
+flight_satisfaction:airport rdf:type owl:Class ;
+                            rdfs:comment "Complex facility where travellers meet flights to come and go. Located in a certain urban area of a certain country."@en ;
+                            rdfs:label "airport"@en ;
+                            rdfs:sameAs "https://dbpedia.org/page/Airport"@en .
+
+
+###  http://www.semanticweb.org/ferranboadabergada/ontologies/2024/3/flight_satisfaction#ambiguous_review
+flight_satisfaction:ambiguous_review rdf:type owl:Class ;
+                                     rdfs:subClassOf flight_satisfaction:review ;
+                                     rdfs:comment "Review from which the airline cannot conclude neither that the customer is happy nor unsatisfied."@en ;
+                                     rdfs:label "ambiguous review"@en .
+
+
+###  http://www.semanticweb.org/ferranboadabergada/ontologies/2024/3/flight_satisfaction#business_class_seat
+flight_satisfaction:business_class_seat rdf:type owl:Class ;
+                                        rdfs:subClassOf flight_satisfaction:seat ;
+                                        rdfs:comment "Second most valuable seat class."@en ;
+                                        rdfs:label "business class seat"@en .
+
+
+###  http://www.semanticweb.org/ferranboadabergada/ontologies/2024/3/flight_satisfaction#business_customer
+flight_satisfaction:business_customer rdf:type owl:Class ;
+                                      rdfs:subClassOf flight_satisfaction:customer ;
+                                      rdfs:comment "Traveller who takes a flight for business purposes."@en ;
+                                      rdfs:label "business customer"@en .
+
+
+###  http://www.semanticweb.org/ferranboadabergada/ontologies/2024/3/flight_satisfaction#cabin_staff
+flight_satisfaction:cabin_staff rdf:type owl:Class ;
+                                rdfs:subClassOf flight_satisfaction:service_review ;
+                                rdfs:comment "Review about the cabin staff behaviour, whether they were professional or not, the frequency of attendance or the solutions offered to the customers' occasional problems."@en ;
+                                rdfs:label "cabin staff review"@en .
+
+
+###  http://www.semanticweb.org/ferranboadabergada/ontologies/2024/3/flight_satisfaction#conditions_review
+flight_satisfaction:conditions_review rdf:type owl:Class ;
+                                      rdfs:subClassOf flight_satisfaction:non_overall_review ;
+                                      rdfs:comment "Review about the material conditions of the flight, that is, facilities, confort, technology, and resources."@en ;
+                                      rdfs:label "conditions review"@en .
+
+
+###  http://www.semanticweb.org/ferranboadabergada/ontologies/2024/3/flight_satisfaction#confort_of_seat
+flight_satisfaction:confort_of_seat rdf:type owl:Class ;
+                                    rdfs:subClassOf flight_satisfaction:conditions_review ;
+                                    rdfs:comment "Review about the confort and conditions of the seat."@en ;
+                                    rdfs:label "confort of seat review"@en .
+
+
+###  http://www.semanticweb.org/ferranboadabergada/ontologies/2024/3/flight_satisfaction#couple_leisure_customer
+flight_satisfaction:couple_leisure_customer rdf:type owl:Class ;
+                                            rdfs:subClassOf flight_satisfaction:leisure_customer ;
+                                            rdfs:comment "Group of two leisure customers"@en ;
+                                            rdfs:label "couple leisure customer"@en .
+
+
+###  http://www.semanticweb.org/ferranboadabergada/ontologies/2024/3/flight_satisfaction#customer
+flight_satisfaction:customer rdf:type owl:Class ;
+                             rdfs:comment "Traveller or group of travellers that respond a review for an airline after a flight."@en ;
+                             rdfs:label "customer"@en .
+
+
+###  http://www.semanticweb.org/ferranboadabergada/ontologies/2024/3/flight_satisfaction#destination
+flight_satisfaction:destination rdf:type owl:Class ;
+                                owl:equivalentClass flight_satisfaction:origin ;
+                                rdfs:subClassOf flight_satisfaction:airport ;
+                                rdfs:comment "Destination airport, where the traveller goes and from which the traveller comes."@en ;
+                                rdfs:label "Destination"@en .
+
+
+###  http://www.semanticweb.org/ferranboadabergada/ontologies/2024/3/flight_satisfaction#economy_class_seat
+flight_satisfaction:economy_class_seat rdf:type owl:Class ;
+                                       rdfs:subClassOf flight_satisfaction:seat ;
+                                       rdfs:comment "Less valuable seat class."@en ;
+                                       rdfs:label "economy class seat"@en .
+
+
+###  http://www.semanticweb.org/ferranboadabergada/ontologies/2024/3/flight_satisfaction#enterteinment
+flight_satisfaction:enterteinment rdf:type owl:Class ;
+                                  rdfs:subClassOf flight_satisfaction:conditions_review ;
+                                  rdfs:comment "Review about the enterteinment technologies and resources offered by the airline."@en ;
+                                  rdfs:label "enterteinment review"@en .
+
+
+###  http://www.semanticweb.org/ferranboadabergada/ontologies/2024/3/flight_satisfaction#family_leisure_customer
+flight_satisfaction:family_leisure_customer rdf:type owl:Class ;
+                                            rdfs:subClassOf flight_satisfaction:leisure_customer ;
+                                            rdfs:comment "Group of more than two leisure customers"@en ;
+                                            rdfs:label "family leisure customer"@en .
+
+
+###  http://www.semanticweb.org/ferranboadabergada/ontologies/2024/3/flight_satisfaction#first_class_seat
+flight_satisfaction:first_class_seat rdf:type owl:Class ;
+                                     rdfs:subClassOf flight_satisfaction:seat ;
+                                     rdfs:comment "Most valuable seat class."@en ;
+                                     rdfs:label "first class seat"@en .
+
+
+###  http://www.semanticweb.org/ferranboadabergada/ontologies/2024/3/flight_satisfaction#flight
+flight_satisfaction:flight rdf:type owl:Class ;
+                           rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                             owl:onProperty flight_satisfaction:arrives_to ;
+                                             owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                             owl:onClass flight_satisfaction:destination
+                                           ] ,
+                                           [ rdf:type owl:Restriction ;
+                                             owl:onProperty flight_satisfaction:by_airline ;
+                                             owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                             owl:onClass flight_satisfaction:airline
+                                           ] ,
+                                           [ rdf:type owl:Restriction ;
+                                             owl:onProperty flight_satisfaction:departs_from ;
+                                             owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                             owl:onClass flight_satisfaction:origin
+                                           ] ,
+                                           [ rdf:type owl:Restriction ;
+                                             owl:onProperty flight_satisfaction:has_aircraft ;
+                                             owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                             owl:onClass flight_satisfaction:aircraft
+                                           ] ;
+                           rdfs:comment "Travelling experience offered by airlines to customers by means of an aircraft and its staff team. Departs from a certain airport and lands on another airport."@en ;
+                           rdfs:label "flight"@en .
+
+
+###  http://www.semanticweb.org/ferranboadabergada/ontologies/2024/3/flight_satisfaction#ground_service
+flight_satisfaction:ground_service rdf:type owl:Class ;
+                                   rdfs:subClassOf flight_satisfaction:service_review ;
+                                   rdfs:comment "Review about the ground service of the airline, both in the home and in the destination airports."@en ;
+                                   rdfs:label "ground service review"@en .
+
+
+###  http://www.semanticweb.org/ferranboadabergada/ontologies/2024/3/flight_satisfaction#leisure_customer
+flight_satisfaction:leisure_customer rdf:type owl:Class ;
+                                     rdfs:subClassOf flight_satisfaction:customer ;
+                                     rdfs:comment "Traveller who takes a flight for leisure or holiday purposes."@en ;
+                                     rdfs:label "leisure customer"@en .
+
+
+###  http://www.semanticweb.org/ferranboadabergada/ontologies/2024/3/flight_satisfaction#negative_review
+flight_satisfaction:negative_review rdf:type owl:Class ;
+                                    rdfs:subClassOf flight_satisfaction:review ;
+                                    rdfs:comment "Review from which the airline can conclude that the customer is unsatisfied"@en ;
+                                    rdfs:label "negative_review"@en .
+
+
+###  http://www.semanticweb.org/ferranboadabergada/ontologies/2024/3/flight_satisfaction#non_overall_review
+flight_satisfaction:non_overall_review rdf:type owl:Class ;
+                                       rdfs:subClassOf flight_satisfaction:review_attributes ;
+                                       rdfs:comment "Review about specific characteristics of the flight experience"@en ;
+                                       rdfs:label "non overall review"@en .
+
+
+###  http://www.semanticweb.org/ferranboadabergada/ontologies/2024/3/flight_satisfaction#non_recommended_review
+flight_satisfaction:non_recommended_review rdf:type owl:Class ;
+                                           rdfs:subClassOf flight_satisfaction:review_recommendation ;
+                                           rdfs:comment "Review that indicates that the customer wouldn't trust the airline again"@en ;
+                                           rdfs:label "non_recommended_review"@en .
+
+
+###  http://www.semanticweb.org/ferranboadabergada/ontologies/2024/3/flight_satisfaction#non_verified_review
+flight_satisfaction:non_verified_review rdf:type owl:Class ;
+                                        rdfs:subClassOf flight_satisfaction:review_verification ;
+                                        rdfs:comment "Non verified review comments"@en ;
+                                        rdfs:label "non verified review"@en .
+
+
+###  http://www.semanticweb.org/ferranboadabergada/ontologies/2024/3/flight_satisfaction#origin
+flight_satisfaction:origin rdf:type owl:Class ;
+                           rdfs:subClassOf flight_satisfaction:airport ;
+                           rdfs:comment "Home airport, from which the traveller departs."@en ;
+                           rdfs:label "Origin"@en .
+
+
+###  http://www.semanticweb.org/ferranboadabergada/ontologies/2024/3/flight_satisfaction#overall_review
+flight_satisfaction:overall_review rdf:type owl:Class ;
+                                   rdfs:subClassOf flight_satisfaction:review_attributes ;
+                                   rdfs:comment "Review about the whole flight."@en ;
+                                   rdfs:label "overall review"@en .
+
+
+###  http://www.semanticweb.org/ferranboadabergada/ontologies/2024/3/flight_satisfaction#positive_review
+flight_satisfaction:positive_review rdf:type owl:Class ;
+                                    rdfs:subClassOf flight_satisfaction:review ;
+                                    rdfs:comment "Review from which the airline can conclude that the customer is happy"@en ;
+                                    rdfs:label "positive_review"@en .
+
+
+###  http://www.semanticweb.org/ferranboadabergada/ontologies/2024/3/flight_satisfaction#premium_economy_class_seat
+flight_satisfaction:premium_economy_class_seat rdf:type owl:Class ;
+                                               rdfs:subClassOf flight_satisfaction:seat ;
+                                               rdfs:comment "Third most valuable seatclass."@en ;
+                                               rdfs:label "premium economy class seat"@en .
+
+
+###  http://www.semanticweb.org/ferranboadabergada/ontologies/2024/3/flight_satisfaction#recommended_review
+flight_satisfaction:recommended_review rdf:type owl:Class ;
+                                       rdfs:subClassOf flight_satisfaction:review_recommendation ;
+                                       rdfs:comment "Review that indicates that the customer would trust the airline again."@en ;
+                                       rdfs:label "recommended_review"@en .
+
+
+###  http://www.semanticweb.org/ferranboadabergada/ontologies/2024/3/flight_satisfaction#review
+flight_satisfaction:review rdf:type owl:Class ;
+                           rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                             owl:onProperty flight_satisfaction:has_information ;
+                                             owl:someValuesFrom flight_satisfaction:review_attributes
+                                           ] ,
+                                           [ rdf:type owl:Restriction ;
+                                             owl:onProperty flight_satisfaction:about_flight ;
+                                             owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                             owl:onClass flight_satisfaction:flight
+                                           ] ,
+                                           [ rdf:type owl:Restriction ;
+                                             owl:onProperty flight_satisfaction:includes_recommendation ;
+                                             owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                             owl:onClass flight_satisfaction:review_recommendation
+                                           ] ,
+                                           [ rdf:type owl:Restriction ;
+                                             owl:onProperty flight_satisfaction:includes_score ;
+                                             owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                             owl:onClass flight_satisfaction:overall_review
+                                           ] ,
+                                           [ rdf:type owl:Restriction ;
+                                             owl:onProperty flight_satisfaction:includes_verification ;
+                                             owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                             owl:onClass flight_satisfaction:review_verification
+                                           ] ,
+                                           [ rdf:type owl:Restriction ;
+                                             owl:onProperty flight_satisfaction:seat_review ;
+                                             owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                             owl:onClass flight_satisfaction:seat
+                                           ] ,
+                                           [ rdf:type owl:Restriction ;
+                                             owl:onProperty flight_satisfaction:written_by ;
+                                             owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                             owl:onClass flight_satisfaction:customer
+                                           ] ;
+                           rdfs:comment "Set of comments and assessments about a flight experience wrotten by a customer."@en ;
+                           rdfs:label "review"@en .
+
+
+###  http://www.semanticweb.org/ferranboadabergada/ontologies/2024/3/flight_satisfaction#review_attributes
+flight_satisfaction:review_attributes rdf:type owl:Class ;
+                                      rdfs:subClassOf flight_satisfaction:review_info ;
+                                      rdfs:comment "Review information of numerical nature about the whole flight or about certain aspects of it."@en ;
+                                      rdfs:label "review attribute"@en .
+
+
+###  http://www.semanticweb.org/ferranboadabergada/ontologies/2024/3/flight_satisfaction#review_info
+flight_satisfaction:review_info rdf:type owl:Class ;
+                                rdfs:comment "Information included in a review. Can be about the overall flight or about specific flight conditions and services. May include an explicit recommendation of the airline and may be or not verified."@en ;
+                                rdfs:label "review information"@en .
+
+
+###  http://www.semanticweb.org/ferranboadabergada/ontologies/2024/3/flight_satisfaction#review_recommendation
+flight_satisfaction:review_recommendation rdf:type owl:Class ;
+                                          rdfs:subClassOf flight_satisfaction:review_info ;
+                                          rdfs:comment "Review information about whether the customer would take the flight again or not. Usually takes the form of a boolean expression."@en ;
+                                          rdfs:label "review recommendation"@en .
+
+
+###  http://www.semanticweb.org/ferranboadabergada/ontologies/2024/3/flight_satisfaction#review_verification
+flight_satisfaction:review_verification rdf:type owl:Class ;
+                                        rdfs:subClassOf flight_satisfaction:review_info ;
+                                        rdfs:comment "Review information about whether the comments have been verified by the airline or not."@en ;
+                                        rdfs:label "review verification"@en .
+
+
+###  http://www.semanticweb.org/ferranboadabergada/ontologies/2024/3/flight_satisfaction#seat
+flight_satisfaction:seat rdf:type owl:Class ;
+                         rdfs:comment "Characteristics of the place offered to the customer in a flight."@en ;
+                         rdfs:label "seat"@en .
+
+
+###  http://www.semanticweb.org/ferranboadabergada/ontologies/2024/3/flight_satisfaction#service_review
+flight_satisfaction:service_review rdf:type owl:Class ;
+                                   rdfs:subClassOf flight_satisfaction:non_overall_review ;
+                                   rdfs:comment "Review about the services offered by the airline staff before, during and after the flight, that is, cabin behaviour, food offer, ground services and others."@en ;
+                                   rdfs:label "service review"@en .
+
+
+###  http://www.semanticweb.org/ferranboadabergada/ontologies/2024/3/flight_satisfaction#solo_leisure_customer
+flight_satisfaction:solo_leisure_customer rdf:type owl:Class ;
+                                          rdfs:subClassOf flight_satisfaction:leisure_customer ;
+                                          rdfs:comment "Single or alone leisure custumer"@en ;
+                                          rdfs:label "solo leisure customer"@en .
+
+
+###  http://www.semanticweb.org/ferranboadabergada/ontologies/2024/3/flight_satisfaction#verified_review
+flight_satisfaction:verified_review rdf:type owl:Class ;
+                                    rdfs:subClassOf flight_satisfaction:review_verification ;
+                                    rdfs:comment "Verified review comments"@en ;
+                                    rdfs:label "verified review"@en .
+
+
+###  http://www.semanticweb.org/ferranboadabergada/ontologies/2024/3/flight_satisfaction#food&beverages
+<http://www.semanticweb.org/ferranboadabergada/ontologies/2024/3/flight_satisfaction#food&beverages> rdf:type owl:Class ;
+                                                                                                     rdfs:subClassOf flight_satisfaction:service_review ;
+                                                                                                     rdfs:comment "Review about the quantity, variety and quality of the food and beverages menu."@en ;
+                                                                                                     rdfs:label "food&beverages review"@en .
+
+
+###  http://www.semanticweb.org/ferranboadabergada/ontologies/2024/3/flight_satisfaction#wifi&connectivity
+<http://www.semanticweb.org/ferranboadabergada/ontologies/2024/3/flight_satisfaction#wifi&connectivity> rdf:type owl:Class ;
+                                                                                                        rdfs:subClassOf flight_satisfaction:conditions_review ;
+                                                                                                        rdfs:comment "Review about the wifi connectivity of the aircraft and other mobile-related services."@en ;
+                                                                                                        rdfs:label "wifi&connectivity review"@en .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://www.semanticweb.org/ferranboadabergada/ontologies/2024/3/flight_satisfaction#Author1
+flight_satisfaction:Author1 rdf:type owl:NamedIndividual ,
+                                     flight_satisfaction:family_leisure_customer ;
+                            flight_satisfaction:comes_from "UK" ;
+                            flight_satisfaction:has_name "Anon." .
+
+
+###  http://www.semanticweb.org/ferranboadabergada/ontologies/2024/3/flight_satisfaction#Author2
+flight_satisfaction:Author2 rdf:type owl:NamedIndividual ,
+                                     flight_satisfaction:solo_leisure_customer ;
+                            flight_satisfaction:comes_from "Denmark" ;
+                            flight_satisfaction:has_name "Anon." .
+
+
+###  http://www.semanticweb.org/ferranboadabergada/ontologies/2024/3/flight_satisfaction#Copenhaguen_orig
+flight_satisfaction:Copenhaguen_orig rdf:type owl:NamedIndividual ,
+                                              flight_satisfaction:origin .
+
+
+###  http://www.semanticweb.org/ferranboadabergada/ontologies/2024/3/flight_satisfaction#Economy_class
+flight_satisfaction:Economy_class rdf:type owl:NamedIndividual ,
+                                           flight_satisfaction:economy_class_seat .
+
+
+###  http://www.semanticweb.org/ferranboadabergada/ontologies/2024/3/flight_satisfaction#Faro_orig
+flight_satisfaction:Faro_orig rdf:type owl:NamedIndividual ,
+                                       flight_satisfaction:origin .
+
+
+###  http://www.semanticweb.org/ferranboadabergada/ontologies/2024/3/flight_satisfaction#Gdansk_dest
+flight_satisfaction:Gdansk_dest rdf:type owl:NamedIndividual ,
+                                         flight_satisfaction:destination .
+
+
+###  http://www.semanticweb.org/ferranboadabergada/ontologies/2024/3/flight_satisfaction#Luton_dest
+flight_satisfaction:Luton_dest rdf:type owl:NamedIndividual ,
+                                        flight_satisfaction:destination .
+
+
+###  http://www.semanticweb.org/ferranboadabergada/ontologies/2024/3/flight_satisfaction#R1_rating
+flight_satisfaction:R1_rating rdf:type owl:NamedIndividual ,
+                                       flight_satisfaction:overall_review ;
+                              flight_satisfaction:has_rate "1.0"^^xsd:float .
+
+
+###  http://www.semanticweb.org/ferranboadabergada/ontologies/2024/3/flight_satisfaction#R1_recommends
+flight_satisfaction:R1_recommends rdf:type owl:NamedIndividual ,
+                                           flight_satisfaction:recommended_review .
+
+
+###  http://www.semanticweb.org/ferranboadabergada/ontologies/2024/3/flight_satisfaction#R2_not_recommends
+flight_satisfaction:R2_not_recommends rdf:type owl:NamedIndividual ,
+                                               flight_satisfaction:non_recommended_review .
+
+
+###  http://www.semanticweb.org/ferranboadabergada/ontologies/2024/3/flight_satisfaction#R2_rating
+flight_satisfaction:R2_rating rdf:type owl:NamedIndividual ,
+                                       flight_satisfaction:overall_review ;
+                              flight_satisfaction:has_rate "0.1"^^xsd:float .
+
+
+###  http://www.semanticweb.org/ferranboadabergada/ontologies/2024/3/flight_satisfaction#Review1
+flight_satisfaction:Review1 rdf:type owl:NamedIndividual ;
+                            flight_satisfaction:about_flight flight_satisfaction:Flight1:Ryn_Faro-Luton_02-24 ;
+                            flight_satisfaction:has_information flight_satisfaction:R1_rating ;
+                            flight_satisfaction:includes_recommendation flight_satisfaction:R1_recommends ;
+                            flight_satisfaction:written_by flight_satisfaction:Author1 .
+
+
+###  http://www.semanticweb.org/ferranboadabergada/ontologies/2024/3/flight_satisfaction#Review2
+flight_satisfaction:Review2 rdf:type owl:NamedIndividual ;
+                            flight_satisfaction:about_flight flight_satisfaction:Flight2:Ryn_Copenhaguen-Gdansk_01-24 ;
+                            flight_satisfaction:has_information flight_satisfaction:R2_rating ;
+                            flight_satisfaction:includes_recommendation flight_satisfaction:R2_not_recommends ;
+                            flight_satisfaction:written_by flight_satisfaction:Author2 .
+
+
+###  http://www.semanticweb.org/ferranboadabergada/ontologies/2024/3/flight_satisfaction#Ryanair
+flight_satisfaction:Ryanair rdf:type owl:NamedIndividual ,
+                                     flight_satisfaction:airline .
+
+
+###  http://www.semanticweb.org/ferranboadabergada/ontologies/2024/3/flight_satisfaction#Flight1:Ryn_Faro-Luton_02-24
+flight_satisfaction:Flight1:Ryn_Faro-Luton_02-24 rdf:type owl:NamedIndividual ;
+                                                 flight_satisfaction:by_airline flight_satisfaction:Ryanair .
+
+
+###  http://www.semanticweb.org/ferranboadabergada/ontologies/2024/3/flight_satisfaction#Flight2:Ryn_Copenhaguen-Gdansk_01-24
+flight_satisfaction:Flight2:Ryn_Copenhaguen-Gdansk_01-24 rdf:type owl:NamedIndividual ;
+                                                         flight_satisfaction:by_airline flight_satisfaction:Ryanair .
+
+
+#################################################################
+#    Rules
+#################################################################
+
+<urn:swrl:var#r> rdf:type swrl:Variable .
+
+<urn:swrl:var#p> rdf:type swrl:Variable .
+
+<urn:swrl:var#a> rdf:type swrl:Variable .
+
+<urn:swrl:var#flight> rdf:type swrl:Variable .
+
+<urn:swrl:var#airline> rdf:type swrl:Variable .
+
+<urn:swrl:var#score> rdf:type swrl:Variable .
+
+<urn:swrl:var#recommendation> rdf:type swrl:Variable .
+
+[ rdf:type swrl:Imp ;
+   swrl:body [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
+                           swrl:propertyPredicate flight_satisfaction:includes_recommendation ;
+                           swrl:argument1 <urn:swrl:var#r> ;
+                           swrl:argument2 <urn:swrl:var#p>
+                         ] ;
+               rdf:rest [ rdf:type swrl:AtomList ;
+                          rdf:first [ rdf:type swrl:ClassAtom ;
+                                      swrl:classPredicate flight_satisfaction:non_recommended_review ;
+                                      swrl:argument1 <urn:swrl:var#p>
+                                    ] ;
+                          rdf:rest rdf:nil
+                        ]
+             ] ;
+   swrl:head [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:ClassAtom ;
+                           swrl:classPredicate flight_satisfaction:negative_review ;
+                           swrl:argument1 <urn:swrl:var#r>
+                         ] ;
+               rdf:rest rdf:nil
+             ]
+ ] .
+
+[ rdf:type swrl:Imp ;
+   swrl:body [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
+                           swrl:propertyPredicate flight_satisfaction:includes_recommendation ;
+                           swrl:argument1 <urn:swrl:var#r> ;
+                           swrl:argument2 <urn:swrl:var#p>
+                         ] ;
+               rdf:rest [ rdf:type swrl:AtomList ;
+                          rdf:first [ rdf:type swrl:ClassAtom ;
+                                      swrl:classPredicate flight_satisfaction:recommended_review ;
+                                      swrl:argument1 <urn:swrl:var#p>
+                                    ] ;
+                          rdf:rest rdf:nil
+                        ]
+             ] ;
+   swrl:head [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:ClassAtom ;
+                           swrl:classPredicate flight_satisfaction:positive_review ;
+                           swrl:argument1 <urn:swrl:var#r>
+                         ] ;
+               rdf:rest rdf:nil
+             ]
+ ] .
+
+[ rdf:type swrl:Imp ;
+   swrl:body [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
+                           swrl:propertyPredicate flight_satisfaction:writes_review ;
+                           swrl:argument1 <urn:swrl:var#p> ;
+                           swrl:argument2 <urn:swrl:var#a>
+                         ] ;
+               rdf:rest [ rdf:type swrl:AtomList ;
+                          rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
+                                      swrl:propertyPredicate flight_satisfaction:includes_recommendation ;
+                                      swrl:argument1 <urn:swrl:var#a> ;
+                                      swrl:argument2 <urn:swrl:var#r>
+                                    ] ;
+                          rdf:rest [ rdf:type swrl:AtomList ;
+                                     rdf:first [ rdf:type swrl:ClassAtom ;
+                                                 swrl:classPredicate flight_satisfaction:recommended_review ;
+                                                 swrl:argument1 <urn:swrl:var#r>
+                                               ] ;
+                                     rdf:rest [ rdf:type swrl:AtomList ;
+                                                rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
+                                                            swrl:propertyPredicate flight_satisfaction:about_flight ;
+                                                            swrl:argument1 <urn:swrl:var#a> ;
+                                                            swrl:argument2 <urn:swrl:var#flight>
+                                                          ] ;
+                                                rdf:rest [ rdf:type swrl:AtomList ;
+                                                           rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
+                                                                       swrl:propertyPredicate flight_satisfaction:by_airline ;
+                                                                       swrl:argument1 <urn:swrl:var#flight> ;
+                                                                       swrl:argument2 <urn:swrl:var#airline>
+                                                                     ] ;
+                                                           rdf:rest rdf:nil
+                                                         ]
+                                              ]
+                                   ]
+                        ]
+             ] ;
+   swrl:head [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
+                           swrl:propertyPredicate flight_satisfaction:recommends_airline ;
+                           swrl:argument1 <urn:swrl:var#p> ;
+                           swrl:argument2 <urn:swrl:var#airline>
+                         ] ;
+               rdf:rest rdf:nil
+             ]
+ ] .
+
+[ rdf:type swrl:Imp ;
+   swrl:body [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
+                           swrl:propertyPredicate flight_satisfaction:includes_score ;
+                           swrl:argument1 <urn:swrl:var#r> ;
+                           swrl:argument2 <urn:swrl:var#score>
+                         ] ;
+               rdf:rest [ rdf:type swrl:AtomList ;
+                          rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                                      swrl:propertyPredicate flight_satisfaction:has_rate ;
+                                      swrl:argument1 <urn:swrl:var#score> ;
+                                      swrl:argument2 <urn:swrl:var#p>
+                                    ] ;
+                          rdf:rest [ rdf:type swrl:AtomList ;
+                                     rdf:first [ rdf:type swrl:BuiltinAtom ;
+                                                 swrl:builtin swrlb:lessThanOrEqual ;
+                                                 swrl:arguments [ rdf:type rdf:List ;
+                                                                  rdf:first <urn:swrl:var#p> ;
+                                                                  rdf:rest [ rdf:type rdf:List ;
+                                                                             rdf:first 0.49 ;
+                                                                             rdf:rest rdf:nil
+                                                                           ]
+                                                                ]
+                                               ] ;
+                                     rdf:rest rdf:nil
+                                   ]
+                        ]
+             ] ;
+   swrl:head [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
+                           swrl:propertyPredicate flight_satisfaction:includes_recommendation ;
+                           swrl:argument1 <urn:swrl:var#r> ;
+                           swrl:argument2 <urn:swrl:var#recommendation>
+                         ] ;
+               rdf:rest [ rdf:type swrl:AtomList ;
+                          rdf:first [ rdf:type swrl:ClassAtom ;
+                                      swrl:classPredicate flight_satisfaction:non_recommended_review ;
+                                      swrl:argument1 <urn:swrl:var#recommendation>
+                                    ] ;
+                          rdf:rest rdf:nil
+                        ]
+             ]
+ ] .
+
+###  Generated by the OWL API (version 4.5.26.2023-07-17T20:34:13Z) https://github.com/owlcs/owlapi
